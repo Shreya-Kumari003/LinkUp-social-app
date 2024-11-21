@@ -23,8 +23,8 @@
 
 .gradient-bg {
   display: flex;
-  flex-direction: column; 
-  justify-content: center; 
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: 20px;
   color: white;
@@ -61,4 +61,17 @@
   100% {
     background-position: 0% 50%;
   }
+}
+
+.react-dropdown-select-option-label{
+  background: rgb(179, 153, 99);
+  color: #000000;
+  /* border-radius: 2px; */
+}
+
+.react-dropdown-select-option-remove{
+  background: rgb(179, 153, 99);
+  color: #000000;
+  font-size: large;
+  border-radius: 1px;
 }

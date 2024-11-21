@@ -376,6 +376,35 @@ const clearAllPosts = async (req, res) => {
   }
 };
 
+const getUserReplies = async (req, res) => {
+  const userId = req.user._id;
+
+  try {
+    const posts = await Post.find({ "replies.userId": userId }).select(
+      "replies postedBy text img"
+    );
+
+    const userReplies = posts.flatMap((post) =>
+      post.replies
+        .filter((reply) => reply.userId.toString() === userId.toString())
+        .map((reply) => ({
+          replyId: reply._id,
+          replyText: reply.text,
+          replyUserProfilePic: reply.userProfilePic,
+          replyUsername: reply.username,
+          postId: post._id,
+          postText: post.text,
+          postImg: post.img,
+          postPostedBy: post.postedBy,
+        }))
+    );
+
+    res.status(200).json({ replies: userReplies });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export {
   signupUser,
   loginUser,
@@ -388,4 +417,5 @@ export {
   deleteAccount,
   clearChatHistory,
   clearAllPosts,
+  getUserReplies,
 };

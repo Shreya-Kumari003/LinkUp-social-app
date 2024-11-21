@@ -11,6 +11,7 @@ import {
 	deleteAccount,
 	clearChatHistory,
 	clearAllPosts,
+	getUserReplies,
 } from "../controllers/userController.js";
 import protectRoute from "../middlewares/protectRoute.js";
 
@@ -27,6 +28,7 @@ router.put("/freeze", protectRoute, freezeAccount);
 router.delete("/delete",protectRoute,deleteAccount)
 router.delete("/clearchat",protectRoute,clearChatHistory)
 router.delete("/clearpost",protectRoute,clearAllPosts)
+router.get("/getreplies",protectRoute,getUserReplies)
 
 
 export default router;

@@ -167,6 +167,10 @@ import {
 				  selectedTags.includes(option.value)
 				)}
 				multi
+				style={{
+				  color: "black",
+				  borderRadius: "4px",
+				}}
 				searchBy="true"
 				placeholder="Select tags.."
 			  />
@@ -212,5 +216,4 @@ import {
 	  </form>
 	);
   }
-  
   

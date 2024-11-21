@@ -22,12 +22,12 @@ import {
 } from "@chakra-ui/react";
 import {
   FaFacebook,
-  FaTwitter,
   FaInstagram,
   FaWhatsapp,
   FaTelegram,
   FaLink,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import userAtom from "../atoms/userAtom";
@@ -144,8 +144,8 @@ const Actions = ({ post, postId, postedBy }) => {
   };
 
   return (
-    <Flex flexDirection="column">
-      <Flex gap={3} my={2} onClick={(e) => e.preventDefault()}>
+    <Flex flexDirection="column" width={"full"} >
+      <Flex gap={3} my={2} justifyContent={"space-between"} paddingRight={4} onClick={(e) => e.preventDefault()}>
         <svg
           aria-label="Like"
           color={liked ? "rgb(237, 73, 86)" : ""}
@@ -263,6 +263,7 @@ const Actions = ({ post, postId, postedBy }) => {
           <ModalBody>
             <Text mt={3}>Share this link via:</Text>
             <HStack spacing={4} mt={4} justify="space-between" width="100%">
+              <a href="https://www.facebook.com/">
               <IconButton
                 aria-label="Share on Facebook"
                 icon={<FaFacebook size="30px" />}
@@ -271,14 +272,18 @@ const Actions = ({ post, postId, postedBy }) => {
                 flex="1"
                 boxSize="65px"
               />
+              </a>
+              <a href="https://x.com/">
               <IconButton
                 aria-label="Share on Twitter"
-                icon={<FaTwitter size="30px" />}
+                icon={<FaXTwitter size="30px" />}
                 colorScheme="twitter"
                 borderRadius="full"
                 flex="1"
                 boxSize="65px"
               />
+              </a>
+              <a href="https://www.instagram.com/">
               <IconButton
                 aria-label="Share on Instagram"
                 icon={<FaInstagram size="30px" />}
@@ -291,7 +296,8 @@ const Actions = ({ post, postId, postedBy }) => {
                 flex="1"
                 boxSize="65px"
               />
-
+              </a>
+                <a href="https://web.whatsapp.com/">
               <IconButton
                 aria-label="Share on WhatsApp"
                 icon={<FaWhatsapp size="30px" />}
@@ -300,6 +306,8 @@ const Actions = ({ post, postId, postedBy }) => {
                 flex="1"
                 boxSize="65px"
               />
+                </a>
+                <a href="https://web.telegram.org/">
               <IconButton
                 aria-label="Share on Telegram"
                 icon={<FaTelegram size="30px" />}
@@ -308,6 +316,7 @@ const Actions = ({ post, postId, postedBy }) => {
                 flex="1"
                 boxSize="65px"
               />
+                </a>
             </HStack>
             <Text mt={6}>Or copy link:</Text>
             <InputGroup mt={3}>
@@ -359,39 +368,6 @@ const RepostSVG = () => {
         fill=""
         d="M19.998 9.497a1 1 0 0 0-1 1v4.228a3.274 3.274 0 0 1-3.27 3.27h-5.313l1.791-1.787a1 1 0 0 0-1.412-1.416L7.29 18.287a1.004 1.004 0 0 0-.294.707v.001c0 .023.012.042.013.065a.923.923 0 0 0 .281.643l3.502 3.504a1 1 0 0 0 1.414-1.414l-1.797-1.798h5.318a5.276 5.276 0 0 0 5.27-5.27v-4.228a1 1 0 0 0-1-1Zm-6.41-3.496-1.795 1.795a1 1 0 1 0 1.414 1.414l3.5-3.5a1.003 1.003 0 0 0 0-1.417l-3.5-3.5a1 1 0 0 0-1.414 1.414l1.794 1.794H8.27A5.277 5.277 0 0 0 3 9.271V13.5a1 1 0 0 0 2 0V9.271a3.275 3.275 0 0 1 3.271-3.27Z"
       ></path>
-    </svg>
-  );
-};
-
-const ShareSVG = () => {
-  return (
-    <svg
-      aria-label="Share"
-      color=""
-      fill="rgb(243, 245, 247)"
-      height="20"
-      role="img"
-      viewBox="0 0 24 24"
-      width="20"
-    >
-      <title>Share</title>
-      <line
-        fill="none"
-        stroke="currentColor"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        x1="22"
-        x2="9.218"
-        y1="3"
-        y2="10.083"
-      ></line>
-      <polygon
-        fill="none"
-        points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
-        stroke="currentColor"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      ></polygon>
     </svg>
   );
 };
