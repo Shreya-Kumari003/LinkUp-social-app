@@ -6,10 +6,6 @@
   transition: background-color 0.3s ease-in-out;
 }
 
-.icon-container:hover {
-  background-color: #1e1e1e;
-}
-
 ::-webkit-scrollbar {
   width: 7px;
 }
@@ -27,9 +23,9 @@
 
 .gradient-bg {
   display: flex;
-  flex-direction: column; /* Stack content vertically */
-  justify-content: center; /* Center content vertically */
-  align-items: center; /* Center content horizontally */
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;
   padding: 20px;
   color: white;
   font-weight: bold;
@@ -50,9 +46,9 @@
 }
 
 .subheading {
-  font-size: 1rem; /* Smaller font size for subheading */
+  font-size: 1rem;
   font-weight: normal;
-  margin-top: 10px; /* Space between title and subheading */
+  margin-top: 10px;
 }
 
 @keyframes gradient {

@@ -4,6 +4,9 @@ import {
 	Image,
 	Link,
 	Box,
+	Input,
+	InputGroup,
+	InputRightElement,
 	IconButton,
 	VStack,
 	Drawer,
@@ -22,9 +25,11 @@ import {
   import { FiLogOut } from "react-icons/fi";
   import { BsFillChatQuoteFill } from "react-icons/bs";
   import { MdOutlineSettings } from "react-icons/md";
-  import { HamburgerIcon } from "@chakra-ui/icons";
-  import { Link as RouterLink } from "react-router-dom";
+  import { HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
+  import { Link as RouterLink, useNavigate } from "react-router-dom";
   import useLogout from "../hooks/useLogout";
+  import { useState } from "react";
+  import useShowToast from "../hooks/useShowToast";
   
   const Header = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
@@ -32,16 +37,38 @@ import {
 	const logout = useLogout();
 	const setAuthScreen = useSetRecoilState(authScreenAtom);
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const [searchText, setSearchText] = useState("");
+	const showToast = useShowToast();
+	const navigate = useNavigate();
+  
+	const handleSearch = async (e) => {
+	  e.preventDefault();
+	  try {
+		const res = await fetch(`/api/users/profile/${searchText}`);
+		const searchedUser = await res.json();
+		if (res.ok) {
+		  console.log(searchedUser);
+  
+		  navigate(`/${searchedUser.username}`);
+		  onClose();
+		} else {
+		  showToast("Error", "User not found", "error");
+		}
+	  } catch (error) {
+		showToast("Error", error.message, "error");
+	  }
+	};
   
 	return (
 	  <Flex
 		justifyContent="space-between"
 		alignItems="center"
-		mt={6}
+		// mt={6}
 		mb={8}
 		p={4}
 		bg={colorMode === "dark" ? "gray.800" : "white"}
 		borderRadius="md"
+		borderTopRadius={"none"}
 		boxShadow="lg"
 		width="full"
 	  >
@@ -173,6 +200,32 @@ import {
 					</Link>
 				  </>
 				)}
+				<form onSubmit={handleSearch}>
+				  <Flex alignItems="center" gap={2} width="100%" mb={2}>
+					<InputGroup>
+					  <Input
+						placeholder="Search for a user"
+						onChange={(e) => setSearchText(e.target.value)}
+						size="md"
+						variant="outline"
+						focusBorderColor="blue.400"
+					  />
+					  <InputRightElement>
+						<Button
+						  size="sm"
+						  variant="ghost"
+						  colorScheme="blue"
+						  onClick={handleSearch}
+						  type="submit"
+						  _hover={{ background: "transparent" }}
+						  _focus={{ boxShadow: "none" }}
+						>
+						  <SearchIcon />
+						</Button>
+					  </InputRightElement>
+					</InputGroup>
+				  </Flex>
+				</form>
 			  </VStack>
 			</DrawerBody>
 		  </DrawerContent>

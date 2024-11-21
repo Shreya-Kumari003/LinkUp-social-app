@@ -8,6 +8,9 @@ import {
 	updateUser,
 	getSuggestedUsers,
 	freezeAccount,
+	deleteAccount,
+	clearChatHistory,
+	clearAllPosts,
 } from "../controllers/userController.js";
 import protectRoute from "../middlewares/protectRoute.js";
 
@@ -21,5 +24,9 @@ router.post("/logout", logoutUser);
 router.post("/follow/:id", protectRoute, followUnFollowUser); // Toggle state(follow/unfollow)
 router.put("/update/:id", protectRoute, updateUser);
 router.put("/freeze", protectRoute, freezeAccount);
+router.delete("/delete",protectRoute,deleteAccount)
+router.delete("/clearchat",protectRoute,clearChatHistory)
+router.delete("/clearpost",protectRoute,clearAllPosts)
+
 
 export default router;

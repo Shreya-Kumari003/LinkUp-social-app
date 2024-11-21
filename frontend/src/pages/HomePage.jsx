@@ -6,6 +6,7 @@ import {
   Button,
   InputGroup,
   InputRightElement,
+  Text,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +16,8 @@ import { useRecoilState } from "recoil";
 import postsAtom from "../atoms/postsAtom";
 import SuggestedUsers from "../components/SuggestedUsers";
 import { SearchIcon } from "@chakra-ui/icons";
+import Lottie from "lottie-react";
+import animationData from "../assets/empty-feed.json";
 
 const HomePage = () => {
   const [posts, setPosts] = useRecoilState(postsAtom);
@@ -65,7 +68,28 @@ const HomePage = () => {
     <Flex gap="10" alignItems={"flex-start"}>
       <Box flex={70}>
         {!loading && posts.length === 0 && (
-          <h1>Follow some users to see the feed</h1>
+          <div>
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+              border="1px"
+              borderColor="gray.300"
+              borderRadius="lg"
+              p={6}
+              boxShadow="md"
+              gap={4} // Chakra's equivalent of Tailwind's space-y
+            >
+              <Text fontWeight="extrabold" fontSize="xl">
+                Your feed is empty!
+              </Text>
+              <Text color="gray.500" textAlign="center">
+                Start following users to see their posts appear in your feed.
+              </Text>
+              <Lottie animationData={animationData} />
+            </Box>
+          </div>
         )}
 
         {loading && (

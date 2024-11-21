@@ -183,7 +183,7 @@ const Actions = ({ post, postId, postedBy }) => {
           ></path>
         </svg>
 
-        <RepostSVG />
+        {/* <RepostSVG /> */}
         {/* share svg */}
         <svg
           aria-label="Share"
@@ -254,61 +254,6 @@ const Actions = ({ post, postId, postedBy }) => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-      {/* <Modal isOpen={isShareOpen} onClose={onShareCloseModal}>
-		  <ModalOverlay />
-		  <ModalContent>
-			<ModalHeader>Share This Post</ModalHeader>
-			<Divider />
-			<ModalCloseButton />
-			<ModalBody>
-			  <Text mt={3}>Share this link via:</Text>
-			  <HStack spacing={4} mt={3} justify="center">
-				<IconButton
-				  aria-label="Share on Facebook"
-				  icon={<FaFacebook />}
-				  colorScheme="facebook"
-				  borderRadius="full"
-				/>
-				<IconButton
-				  aria-label="Share on Twitter"
-				  icon={<FaTwitter />}
-				  colorScheme="twitter"
-				  borderRadius="full"
-				/>
-				<IconButton
-				  aria-label="Share on Instagram"
-				  icon={<FaInstagram />}
-				  bgGradient="linear(to-r, pink.500, purple.500)"
-				  color="white"
-				  borderRadius="full"
-				/>
-				<IconButton
-				  aria-label="Share on WhatsApp"
-				  icon={<FaWhatsapp />}
-				  colorScheme="whatsapp"
-				  borderRadius="full"
-				/>
-				<IconButton
-				  aria-label="Share on Telegram"
-				  icon={<FaTelegram />}
-				  colorScheme="telegram"
-				  borderRadius="full"
-				/>
-			  </HStack>
-			  <Text mt={6}>Or copy link:</Text>
-			  <HStack mt={3}>
-				<Input
-				  isReadOnly
-				  value={`https://linkup-social-app.onrender.com/${postedBy}/post/${postId}`}
-				  flex="1"
-				/>
-				<Button size="sm" colorScheme="blue">
-				  Copy
-				</Button>
-			  </HStack>
-			</ModalBody>
-		  </ModalContent>
-		</Modal> */}
       <Modal isOpen={isShareOpen} onClose={onShareCloseModal}>
         <ModalOverlay />
         <ModalContent>
