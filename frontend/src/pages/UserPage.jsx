@@ -5,15 +5,17 @@ import useShowToast from "../hooks/useShowToast";
 import { Flex, Spinner, Text } from "@chakra-ui/react";
 import Post from "../components/Post";
 import useGetUserProfile from "../hooks/useGetUserProfile";
-import { useRecoilState } from "recoil";
 import postsAtom from "../atoms/postsAtom";
 import Comment from "../components/Comment";
+import { useRecoilState, useRecoilValue } from "recoil";
+import userAtom from "../atoms/userAtom";
 
 const UserPage = () => {
   const { user, loading } = useGetUserProfile();
   const { username } = useParams();
   const showToast = useShowToast();
   const [posts, setPosts] = useRecoilState(postsAtom);
+  const currentUser = useRecoilValue(userAtom);
   const [fetchingPosts, setFetchingPosts] = useState(true);
   const [activeTab, setActiveTab] = useState("posts");
   const [replies, setReplies] = useState([]);
@@ -26,7 +28,7 @@ const UserPage = () => {
     try {
       const res = await fetch(`/api/users/getreplies`);
       const data = await res.json();
-      setReplies(Array.isArray(data.replies) ? data.replies : []); // Extract replies array
+      setReplies(Array.isArray(data.replies) ? data.replies : []);
     } catch (error) {
       showToast("Error", error.message, "error");
       setReplies([]);
@@ -93,7 +95,17 @@ const UserPage = () => {
           justifyContent={"center"}
           pb={3}
           cursor={"pointer"}
-          onClick={getReplies} // Set active tab to "replies"
+          onClick={() => {
+            if (currentUser._id !== user._id) {
+              showToast(
+                "Access Denied",
+                "You can only view your own replies.",
+                "error"
+              );
+              return;
+            }
+            getReplies(); // Fetch replies if the condition is met
+          }}
         >
           <Text
             fontWeight={"bold"}

@@ -30,8 +30,6 @@ import {
   
 	const currentPost = posts[0];
   
-	console.log(user);
-  
 	useEffect(() => {
 	  const getPost = async () => {
 		setPosts([]);
