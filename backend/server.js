@@ -13,7 +13,7 @@ import job from "./cron/cron.js";
 dotenv.config();
 
 connectDB();
-job.start();
+// job.start();
 
 const PORT = process.env.PORT || 5000;
 
@@ -40,17 +40,6 @@ app.use(express.static(path.join(__dirname, "/frontend/dist")));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
 });
-
-// http://localhost:5000 => backend,frontend
-
-// if (process.env.NODE_ENV === "production") {
-// 	app.use(express.static(path.join(__dirname, "/frontend/dist")));
-
-// 	// react app
-// 	app.get("*", (req, res) => {
-// 		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
-// 	});
-// }
 
 server.listen(PORT, () =>
   console.log(`Server started at http://localhost:${PORT}`)
