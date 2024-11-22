@@ -87,6 +87,10 @@ import {
 			cursor={"pointer"}
 			onClick={(e) => {
 			  e.preventDefault();
+			  if (user.isFrozen) {
+				showToast("Account Frozen", "User's account is frozen.", "error");
+				return;
+			  }
 			  navigate(`/${user.username}`);
 			}}
 		  >
